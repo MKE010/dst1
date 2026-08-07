@@ -41,3 +41,21 @@ def run_dijkstra(g, s, t):
     else:
         return []
 
+def myBfs(g, s, t):
+    v = set()
+    q = [[s]]
+    if s == t:
+        return [s]
+        
+    while len(q) > 0:
+        p = q.pop(0)
+        n = p[-1]
+        if n not in v:
+            for adj, weight_ignore in g.get_adj(n):
+                p2 = list(p)
+                p2.append(adj)
+                if adj == t:
+                    return p2
+                q.append(p2)
+            v.add(n)
+    return []
